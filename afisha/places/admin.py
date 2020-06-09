@@ -4,7 +4,8 @@ from .models import Place, Image
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('title', 'lat', 'lon', 'description_short')
+    list_display = ('title', 'description_short',)
+    prepopulated_fields = {'slug': ('title',)}
 
 
 admin.site.register(Image)
