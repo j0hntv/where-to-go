@@ -39,4 +39,4 @@ def place_info(request, pk):
         }
     }
 
-    return JsonResponse(response, safe=False, json_dumps_params={'ensure_ascii': False})
+    return JsonResponse(response, safe=False, json_dumps_params={'ensure_ascii': False, 'indent': True})
