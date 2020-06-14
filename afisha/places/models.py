@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.html import format_html
 
 
 class Place(models.Model):
@@ -16,6 +17,9 @@ class Place(models.Model):
 class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.PROTECT, related_name='images')
     image = models.ImageField('Image', upload_to='place_images/')
+
+    def get_preview(self):
+        return format_html(f'<img src="{self.image.url}" width="150" />')
 
     def __str__(self):
         return f'{self.id} {self.place.title}'
