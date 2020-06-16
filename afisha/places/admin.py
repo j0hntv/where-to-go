@@ -1,8 +1,9 @@
 from django.contrib import admin
+from adminsortable2.admin import SortableInlineAdminMixin
 from .models import Place, Image
 
 
-class ImageInLine(admin.TabularInline):
+class ImageInLine(SortableInlineAdminMixin, admin.TabularInline):
     model = Image
     readonly_fields = ('get_preview',)
 
@@ -16,4 +17,4 @@ class PlaceAdmin(admin.ModelAdmin):
 
 @admin.register(Image)
 class ImageAdmin(admin.ModelAdmin):
-    list_display = ('id', 'place', 'get_preview')
+    list_display = ('place', 'get_preview')

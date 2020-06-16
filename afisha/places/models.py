@@ -17,6 +17,7 @@ class Place(models.Model):
 class Image(models.Model):
     place = models.ForeignKey(Place, on_delete=models.PROTECT, related_name='images')
     image = models.ImageField('Image', upload_to='place_images/')
+    sort = models.PositiveIntegerField(default=0, blank=False, null=False)
 
     def get_preview(self):
         return format_html(f'<img src="{self.image.url}" width="150" />')
@@ -25,4 +26,4 @@ class Image(models.Model):
         return f'{self.id} {self.place.title}'
 
     class Meta:
-        ordering = ('-id',)
+        ordering = ('sort',)
