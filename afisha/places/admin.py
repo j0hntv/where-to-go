@@ -10,7 +10,7 @@ class ImageInLine(SortableInlineAdminMixin, admin.TabularInline):
 
 @admin.register(Place)
 class PlaceAdmin(admin.ModelAdmin):
-    list_display = ('id', 'title', 'description_short',)
+    list_display = ('title', 'description_short',)
     prepopulated_fields = {'slug': ('title',)}
     inlines = (ImageInLine, )
 
