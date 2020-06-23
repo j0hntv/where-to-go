@@ -2,6 +2,7 @@ import requests
 from django.core.management.base import BaseCommand
 from django.core.files.base import ContentFile
 from transliterate import slugify
+from tqdm import tqdm
 from places.models import Place, Image
 
 
@@ -24,13 +25,13 @@ def create_place(json_url):
     image_urls = json['imgs']
     
     place_object, is_created = Place.objects.get_or_create(
-                title=json['title'],
-                slug=slugify(json['title']),
-                description_short=json['description_short'],
-                description_long=json['description_long'],
-                latitude=json['coordinates']['lat'],
-                longitude=json['coordinates']['lng'],
-            )
+        title=json['title'],
+        slug=slugify(json['title']),
+        description_short=json['description_short'],
+        description_long=json['description_long'],
+        latitude=json['coordinates']['lat'],
+        longitude=json['coordinates']['lng'],
+    )
 
     if not is_created:
         return
@@ -48,5 +49,6 @@ class Command(BaseCommand):
         parser.add_argument('url', nargs='+', type=str)
 
     def handle(self, *args, **options):
-        for url in options['url']:
+        urls = options['url']
+        for url in tqdm(urls):
             create_place(url)
