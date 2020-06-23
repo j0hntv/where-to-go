@@ -1,7 +1,7 @@
 import requests
 from django.core.management.base import BaseCommand
 from django.core.files.base import ContentFile
-from django.utils.text import slugify
+from transliterate import slugify
 from places.models import Place, Image
 
 
@@ -25,7 +25,7 @@ def create_place(json_url):
     
     place_object, is_created = Place.objects.get_or_create(
                 title=json['title'],
-                slug=slugify(json['title'], allow_unicode=True),
+                slug=slugify(json['title']),
                 description_short=json['description_short'],
                 description_long=json['description_long'],
                 latitude=json['coordinates']['lat'],
