@@ -8,8 +8,9 @@
 
 ## Установка:
 ```
-git clone https://github.com/j0hntv/Afisha.git
-python3 -m venv env
+mkdir Afisha && cd Afisha
+git clone https://github.com/j0hntv/Afisha.git .
+python3.8 -m venv env
 . env/bin/activate
 pip install -r requirements.txt
 ```
@@ -19,10 +20,12 @@ pip install -r requirements.txt
 
 ```
 SECRET_KEY=...
-```
-Для режима отладки:
-```
 DEBUG=True
+```
+
+## Применение миграций:
+```
+python manage.py migrate
 ```
 
 ## Добавление в базу данных интересных мест:
