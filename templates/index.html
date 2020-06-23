@@ -172,15 +172,7 @@
 
           let color = geoJsonPoint.properties.color || 'red';
 
-          var pulsingIcon = L.icon.pulse({
-            iconSize: [8, 8],
-            color: color,
-            fillColor: color,
-            heartbeat: 2.5,
-          });
-
           let marker = L.marker(latlng, {
-            icon: pulsingIcon,
             riseOnHover: true,
           });
 
