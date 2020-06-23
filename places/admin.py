@@ -13,8 +13,4 @@ class PlaceAdmin(admin.ModelAdmin):
     list_display = ('title', 'description_short',)
     prepopulated_fields = {'slug': ('title',)}
     inlines = (ImageInLine, )
-
-
-@admin.register(Image)
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ('place', 'get_preview')
+    search_fields = ('title',)
