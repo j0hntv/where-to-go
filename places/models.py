@@ -16,7 +16,7 @@ class Place(models.Model):
 
 
 class Image(models.Model):
-    place = models.ForeignKey(Place, on_delete=models.PROTECT, related_name='images')
+    place = models.ForeignKey(Place, on_delete=models.CASCADE, related_name='images')
     image = models.ImageField('Image', upload_to='place_images/')
     sort = models.PositiveIntegerField(default=0, blank=False, null=False)
 
