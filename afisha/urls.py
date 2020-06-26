@@ -8,6 +8,6 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
-    path('places/<int:pk>/', views.place_info, name='place_info'),
+    path('places/<int:place_primary_key>/', views.place_info, name='place_info'),
     path('tinymce/', include('tinymce.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
